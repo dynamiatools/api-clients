@@ -1,0 +1,1253 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: mario@dynamiasoluciones.com
+    name: Mario Serrano
+  description: DynamiaTools Metadata API
+  license:
+    name: Apache 2 License
+    url: https://github.com/dynamiatools/framework?tab=Apache-2.0-1-ov-file#readme
+  title: DynamiaTools API
+  version: 5.3.6
+externalDocs:
+  description: DynamiaTools Documentation
+  url: https://www.dynamia.tools
+servers:
+- description: Generated server url
+  url: http://localhost:8080
+paths:
+  /crud-service/{className}:
+    post:
+      operationId: createOrSave
+      parameters:
+      - explode: false
+        in: path
+        name: className
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+      tags:
+      - DynamiaCrudService
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    put:
+      operationId: createOrSave_1
+      parameters:
+      - explode: false
+        in: path
+        name: className
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+      tags:
+      - DynamiaCrudService
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /crud-service/{className}/id:
+    post:
+      operationId: getId
+      parameters:
+      - explode: false
+        in: path
+        name: className
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryParameters'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+      tags:
+      - DynamiaCrudService
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /crud-service/{className}/find:
+    post:
+      operationId: find
+      parameters:
+      - explode: false
+        in: path
+        name: className
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryParameters'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: object
+                type: array
+          description: OK
+      tags:
+      - DynamiaCrudService
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/app/metadata/entities/{className}/action/{action}:
+    post:
+      operationId: executeEntityAction
+      parameters:
+      - explode: false
+        in: path
+        name: className
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: action
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActionExecutionRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionExecutionResponse'
+          description: OK
+      tags:
+      - DynamiaApplicationMetadata
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/app/metadata/actions/{action}:
+    post:
+      operationId: executeGlobalAction
+      parameters:
+      - explode: false
+        in: path
+        name: action
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: request
+        required: true
+        schema:
+          $ref: '#/components/schemas/ActionExecutionRequest'
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionExecutionResponse'
+          description: OK
+      tags:
+      - DynamiaApplicationMetadata
+      x-accepts:
+      - application/json
+  /schedule/execute-tasks/morning:
+    get:
+      operationId: executeMorningTasks
+      responses:
+        "200":
+          description: OK
+      tags:
+      - DynamiaPeriodicTasks
+      x-accepts:
+      - application/json
+  /schedule/execute-tasks/midday:
+    get:
+      operationId: executeMiddayTasks
+      responses:
+        "200":
+          description: OK
+      tags:
+      - DynamiaPeriodicTasks
+      x-accepts:
+      - application/json
+  /schedule/execute-tasks/evening:
+    get:
+      operationId: executeMidnightTasks
+      responses:
+        "200":
+          description: OK
+      tags:
+      - DynamiaPeriodicTasks
+      x-accepts:
+      - application/json
+  /schedule/execute-tasks/afternoon:
+    get:
+      operationId: executeAfternoonTasks
+      responses:
+        "200":
+          description: OK
+      tags:
+      - DynamiaPeriodicTasks
+      x-accepts:
+      - application/json
+  /crud-service/{className}/{id}:
+    delete:
+      operationId: delete
+      parameters:
+      - explode: false
+        in: path
+        name: className
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: object
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+      tags:
+      - DynamiaCrudService
+      x-accepts:
+      - application/json
+    get:
+      operationId: get
+      parameters:
+      - explode: false
+        in: path
+        name: className
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: object
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: OK
+      tags:
+      - DynamiaCrudService
+      x-accepts:
+      - application/json
+  /api/app/metadata:
+    get:
+      operationId: getMetadata
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationMetadata'
+          description: OK
+      tags:
+      - DynamiaApplicationMetadata
+      x-accepts:
+      - application/json
+  /api/app/metadata/navigation:
+    get:
+      operationId: getNavigation
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NavigationTree'
+          description: OK
+      tags:
+      - DynamiaApplicationMetadata
+      x-accepts:
+      - application/json
+  /api/app/metadata/entities:
+    get:
+      operationId: getEntities
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationMetadataEntities'
+          description: OK
+      tags:
+      - DynamiaApplicationMetadata
+      x-accepts:
+      - application/json
+  /api/app/metadata/entities/{className}:
+    get:
+      operationId: getEntityMetadata
+      parameters:
+      - explode: false
+        in: path
+        name: className
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityMetadata'
+          description: OK
+      tags:
+      - DynamiaApplicationMetadata
+      x-accepts:
+      - application/json
+  /api/app/metadata/entities/{className}/views:
+    get:
+      operationId: executeEntityAction_1
+      parameters:
+      - explode: false
+        in: path
+        name: className
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ViewDescriptor'
+                type: array
+          description: OK
+      tags:
+      - DynamiaApplicationMetadata
+      x-accepts:
+      - application/json
+  /api/app/metadata/entities/{className}/views/{view}:
+    get:
+      operationId: getEntityViewDescriptor
+      parameters:
+      - explode: false
+        in: path
+        name: className
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: view
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewDescriptor'
+          description: OK
+      tags:
+      - DynamiaApplicationMetadata
+      x-accepts:
+      - application/json
+  /api/app/metadata/actions:
+    get:
+      operationId: getGlobalActions
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationMetadataActions'
+          description: OK
+      tags:
+      - DynamiaApplicationMetadata
+      x-accepts:
+      - application/json
+components:
+  schemas:
+    BeanSorterObject:
+      example:
+        ascending: true
+        columnName: columnName
+      properties:
+        ascending:
+          type: boolean
+        columnName:
+          type: string
+    DataPaginator:
+      example:
+        totalSize: 0
+        pagesNumber: 5
+        pageSize: 6
+        firstResult: 1
+        page: 5
+      properties:
+        totalSize:
+          format: int64
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        firstResult:
+          format: int32
+          type: integer
+        page:
+          format: int32
+          type: integer
+        pagesNumber:
+          format: int32
+          type: integer
+    QueryParameters:
+      additionalProperties:
+        type: object
+      example:
+        sortedKeys:
+        - sortedKeys
+        - sortedKeys
+        sorted: true
+        depth: 2
+        sorter:
+          ascending: true
+          columnName: columnName
+        hints:
+          key: "{}"
+        maxResults: 7
+        autocreateSearcheableStrings: true
+        paginator:
+          totalSize: 0
+          pagesNumber: 5
+          pageSize: 6
+          firstResult: 1
+          page: 5
+        empty: true
+      properties:
+        sorter:
+          $ref: '#/components/schemas/BeanSorterObject'
+        paginator:
+          $ref: '#/components/schemas/DataPaginator'
+        autocreateSearcheableStrings: {}
+        hints:
+          additionalProperties: {}
+        depth:
+          format: int32
+        maxResults:
+          format: int32
+        sortedKeys:
+          items: {}
+        sorted: {}
+        empty: {}
+    ActionExecutionRequest:
+      example:
+        data: "{}"
+        dataId: dataId
+        dataType: dataType
+        dataName: dataName
+        source: source
+        params:
+          key: "{}"
+      properties:
+        data:
+          type: object
+        params:
+          additionalProperties:
+            type: object
+        source:
+          type: string
+        dataType:
+          type: string
+        dataId:
+          type: string
+        dataName:
+          type: string
+    ActionExecutionResponse:
+      example:
+        data: "{}"
+        dataId: dataId
+        dataType: dataType
+        dataName: dataName
+        source: source
+        params:
+          key: "{}"
+        status: status
+        statusCode: 0
+      properties:
+        data:
+          type: object
+        params:
+          additionalProperties:
+            type: object
+        source:
+          type: string
+        status:
+          type: string
+        statusCode:
+          format: int32
+          type: integer
+        dataType:
+          type: string
+        dataId:
+          type: string
+        dataName:
+          type: string
+    ApplicationMetadata:
+      example:
+        template: template
+        endpoint: endpoint
+        author: author
+        name: name
+        icon: icon
+        description: description
+        logo: logo
+        id: id
+        title: title
+        version: version
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        endpoint:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        title:
+          type: string
+        version:
+          type: string
+        logo:
+          type: string
+        template:
+          type: string
+        author:
+          type: string
+    NavigationNode:
+      example:
+        path: path
+        featured: true
+        file: file
+        name: name
+        icon: icon
+        description: description
+        attributes:
+          key: "{}"
+        id: id
+        internalPath: internalPath
+        position: 0.8008281904610115
+        type: type
+        longName: longName
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        longName:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        internalPath:
+          type: string
+        path:
+          type: string
+        position:
+          format: double
+          type: number
+        featured:
+          type: boolean
+        attributes:
+          additionalProperties:
+            type: object
+        file:
+          type: string
+    NavigationTree:
+      example:
+        navigation:
+        - path: path
+          featured: true
+          file: file
+          name: name
+          icon: icon
+          description: description
+          attributes:
+            key: "{}"
+          id: id
+          internalPath: internalPath
+          position: 0.8008281904610115
+          type: type
+          longName: longName
+        - path: path
+          featured: true
+          file: file
+          name: name
+          icon: icon
+          description: description
+          attributes:
+            key: "{}"
+          id: id
+          internalPath: internalPath
+          position: 0.8008281904610115
+          type: type
+          longName: longName
+      properties:
+        navigation:
+          items:
+            $ref: '#/components/schemas/NavigationNode'
+          type: array
+    ActionMetadata:
+      example:
+        endpoint: endpoint
+        renderer: renderer
+        applicableClasses:
+        - applicableClasses
+        - applicableClasses
+        name: name
+        icon: icon
+        description: description
+        id: id
+        applicableStates:
+        - applicableStates
+        - applicableStates
+        group: group
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        endpoint:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        group:
+          type: string
+        renderer:
+          type: string
+        applicableClasses:
+          items:
+            type: string
+          type: array
+        applicableStates:
+          items:
+            type: string
+          type: array
+    ApplicationMetadataEntities:
+      example:
+        entities:
+        - descriptors:
+          - endpoint: endpoint
+            view: view
+            beanClass: beanClass
+            name: name
+            icon: icon
+            description: description
+            id: id
+            device: device
+          - endpoint: endpoint
+            view: view
+            beanClass: beanClass
+            name: name
+            icon: icon
+            description: description
+            id: id
+            device: device
+          endpoint: endpoint
+          name: name
+          icon: icon
+          description: description
+          actionsEndpoint: actionsEndpoint
+          className: className
+          id: id
+          viewsEndpoint: viewsEndpoint
+          actions:
+          - endpoint: endpoint
+            renderer: renderer
+            applicableClasses:
+            - applicableClasses
+            - applicableClasses
+            name: name
+            icon: icon
+            description: description
+            id: id
+            applicableStates:
+            - applicableStates
+            - applicableStates
+            group: group
+          - endpoint: endpoint
+            renderer: renderer
+            applicableClasses:
+            - applicableClasses
+            - applicableClasses
+            name: name
+            icon: icon
+            description: description
+            id: id
+            applicableStates:
+            - applicableStates
+            - applicableStates
+            group: group
+        - descriptors:
+          - endpoint: endpoint
+            view: view
+            beanClass: beanClass
+            name: name
+            icon: icon
+            description: description
+            id: id
+            device: device
+          - endpoint: endpoint
+            view: view
+            beanClass: beanClass
+            name: name
+            icon: icon
+            description: description
+            id: id
+            device: device
+          endpoint: endpoint
+          name: name
+          icon: icon
+          description: description
+          actionsEndpoint: actionsEndpoint
+          className: className
+          id: id
+          viewsEndpoint: viewsEndpoint
+          actions:
+          - endpoint: endpoint
+            renderer: renderer
+            applicableClasses:
+            - applicableClasses
+            - applicableClasses
+            name: name
+            icon: icon
+            description: description
+            id: id
+            applicableStates:
+            - applicableStates
+            - applicableStates
+            group: group
+          - endpoint: endpoint
+            renderer: renderer
+            applicableClasses:
+            - applicableClasses
+            - applicableClasses
+            name: name
+            icon: icon
+            description: description
+            id: id
+            applicableStates:
+            - applicableStates
+            - applicableStates
+            group: group
+      properties:
+        entities:
+          items:
+            $ref: '#/components/schemas/EntityMetadata'
+          type: array
+    EntityMetadata:
+      example:
+        descriptors:
+        - endpoint: endpoint
+          view: view
+          beanClass: beanClass
+          name: name
+          icon: icon
+          description: description
+          id: id
+          device: device
+        - endpoint: endpoint
+          view: view
+          beanClass: beanClass
+          name: name
+          icon: icon
+          description: description
+          id: id
+          device: device
+        endpoint: endpoint
+        name: name
+        icon: icon
+        description: description
+        actionsEndpoint: actionsEndpoint
+        className: className
+        id: id
+        viewsEndpoint: viewsEndpoint
+        actions:
+        - endpoint: endpoint
+          renderer: renderer
+          applicableClasses:
+          - applicableClasses
+          - applicableClasses
+          name: name
+          icon: icon
+          description: description
+          id: id
+          applicableStates:
+          - applicableStates
+          - applicableStates
+          group: group
+        - endpoint: endpoint
+          renderer: renderer
+          applicableClasses:
+          - applicableClasses
+          - applicableClasses
+          name: name
+          icon: icon
+          description: description
+          id: id
+          applicableStates:
+          - applicableStates
+          - applicableStates
+          group: group
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        endpoint:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        className:
+          type: string
+        actions:
+          items:
+            $ref: '#/components/schemas/ActionMetadata'
+          type: array
+        descriptors:
+          items:
+            $ref: '#/components/schemas/ViewDescriptorMetadata'
+          type: array
+        actionsEndpoint:
+          type: string
+        viewsEndpoint:
+          type: string
+    ViewDescriptorMetadata:
+      example:
+        endpoint: endpoint
+        view: view
+        beanClass: beanClass
+        name: name
+        icon: icon
+        description: description
+        id: id
+        device: device
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        endpoint:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        view:
+          type: string
+        device:
+          type: string
+        beanClass:
+          type: string
+    ActionRef:
+      example:
+        visible: true
+        width: width
+        icon: icon
+        description: description
+        id: id
+        label: label
+        params:
+          key: "{}"
+      properties:
+        id:
+          type: string
+        width:
+          type: string
+        visible:
+          type: boolean
+        label:
+          type: string
+        icon:
+          type: string
+        description:
+          type: string
+        params:
+          additionalProperties:
+            type: object
+    Field:
+      example:
+        writeOnly: true
+        visible: true
+        icon: icon
+        description: description
+        index: 0
+        optional: true
+        readOnly: true
+        label: label
+        collection: true
+        params:
+          key: "{}"
+        required: true
+        path: path
+        component: component
+        localizedLabel: localizedLabel
+        name: name
+        variable: variable
+        property: true
+        action:
+          visible: true
+          width: width
+          icon: icon
+          description: description
+          id: id
+          label: label
+          params:
+            key: "{}"
+        readWrite: true
+        showIconOnly: true
+        localizedDescription: localizedDescription
+        entity: true
+      properties:
+        name:
+          type: string
+        label:
+          type: string
+        description:
+          type: string
+        component:
+          type: string
+        params:
+          additionalProperties:
+            type: object
+        visible:
+          type: boolean
+        index:
+          format: int32
+          type: integer
+        required:
+          type: boolean
+        action:
+          $ref: '#/components/schemas/ActionRef'
+        icon:
+          type: string
+        showIconOnly:
+          type: boolean
+        optional:
+          type: boolean
+        path:
+          type: string
+        variable:
+          type: string
+        readOnly:
+          type: boolean
+        collection:
+          type: boolean
+        entity:
+          type: boolean
+        localizedDescription:
+          type: string
+        localizedLabel:
+          type: string
+        property:
+          type: boolean
+        readWrite:
+          type: boolean
+        writeOnly:
+          type: boolean
+    FieldGroup:
+      example:
+        localizedLabel: localizedLabel
+        name: name
+        icon: icon
+        description: description
+        index: 6
+        label: label
+        params:
+          key: "{}"
+        fields:
+        - fields
+        - fields
+        collapse: true
+      properties:
+        name:
+          type: string
+        label:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        index:
+          format: int32
+          type: integer
+        collapse:
+          type: boolean
+        params:
+          additionalProperties:
+            type: object
+        localizedLabel:
+          type: string
+        fields:
+          items:
+            type: string
+          type: array
+    ViewDescriptor:
+      example:
+        layout:
+          params:
+            key: "{}"
+        fieldGroups:
+        - localizedLabel: localizedLabel
+          name: name
+          icon: icon
+          description: description
+          index: 6
+          label: label
+          params:
+            key: "{}"
+          fields:
+          - fields
+          - fields
+          collapse: true
+        - localizedLabel: localizedLabel
+          name: name
+          icon: icon
+          description: description
+          index: 6
+          label: label
+          params:
+            key: "{}"
+          fields:
+          - fields
+          - fields
+          collapse: true
+        extends: extends
+        autofields: true
+        messages: messages
+        viewTypeName: viewTypeName
+        id: id
+        fields:
+        - writeOnly: true
+          visible: true
+          icon: icon
+          description: description
+          index: 0
+          optional: true
+          readOnly: true
+          label: label
+          collection: true
+          params:
+            key: "{}"
+          required: true
+          path: path
+          component: component
+          localizedLabel: localizedLabel
+          name: name
+          variable: variable
+          property: true
+          action:
+            visible: true
+            width: width
+            icon: icon
+            description: description
+            id: id
+            label: label
+            params:
+              key: "{}"
+          readWrite: true
+          showIconOnly: true
+          localizedDescription: localizedDescription
+          entity: true
+        - writeOnly: true
+          visible: true
+          icon: icon
+          description: description
+          index: 0
+          optional: true
+          readOnly: true
+          label: label
+          collection: true
+          params:
+            key: "{}"
+          required: true
+          path: path
+          component: component
+          localizedLabel: localizedLabel
+          name: name
+          variable: variable
+          property: true
+          action:
+            visible: true
+            width: width
+            icon: icon
+            description: description
+            id: id
+            label: label
+            params:
+              key: "{}"
+          readWrite: true
+          showIconOnly: true
+          localizedDescription: localizedDescription
+          entity: true
+        params:
+          key: "{}"
+        actions:
+        - visible: true
+          width: width
+          icon: icon
+          description: description
+          id: id
+          label: label
+          params:
+            key: "{}"
+        - visible: true
+          width: width
+          icon: icon
+          description: description
+          id: id
+          label: label
+          params:
+            key: "{}"
+        device: device
+      properties:
+        fields:
+          items:
+            $ref: '#/components/schemas/Field'
+          type: array
+        actions:
+          items:
+            $ref: '#/components/schemas/ActionRef'
+          type: array
+        id:
+          type: string
+        layout:
+          $ref: '#/components/schemas/ViewLayout'
+        extends:
+          type: string
+        autofields:
+          type: boolean
+        device:
+          type: string
+        viewTypeName:
+          type: string
+        messages:
+          type: string
+        fieldGroups:
+          items:
+            $ref: '#/components/schemas/FieldGroup'
+          type: array
+        params:
+          additionalProperties:
+            type: object
+    ViewLayout:
+      example:
+        params:
+          key: "{}"
+      properties:
+        params:
+          additionalProperties:
+            type: object
+    ApplicationMetadataActions:
+      example:
+        actions:
+        - endpoint: endpoint
+          renderer: renderer
+          applicableClasses:
+          - applicableClasses
+          - applicableClasses
+          name: name
+          icon: icon
+          description: description
+          id: id
+          applicableStates:
+          - applicableStates
+          - applicableStates
+          group: group
+        - endpoint: endpoint
+          renderer: renderer
+          applicableClasses:
+          - applicableClasses
+          - applicableClasses
+          name: name
+          icon: icon
+          description: description
+          id: id
+          applicableStates:
+          - applicableStates
+          - applicableStates
+          group: group
+      properties:
+        actions:
+          items:
+            $ref: '#/components/schemas/ActionMetadata'
+          type: array
+

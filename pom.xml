@@ -1,0 +1,197 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>dynamia-tools-openapi-generator</artifactId>
+    <name>DynamiaTools - OpenApi Generator</name>
+    <url>https://www.dynamia.tools</url>
+
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.4</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <dynamiatools.version>5.3.7</dynamiatools.version>
+        <springdoc.version>2.8.4</springdoc.version>
+        <springdocplugin.version>1.4</springdocplugin.version>
+
+        <openapi.generator.maven.plugin.gitUserId>dynamiatools</openapi.generator.maven.plugin.gitUserId>
+        <openapi.generator.maven.plugin.gitRepoId>api-clients</openapi.generator.maven.plugin.gitRepoId>
+        <openapi.generator.maven.plugin.inputSpec>${project.basedir}/openapi.json
+        </openapi.generator.maven.plugin.inputSpec>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>tools.dynamia</groupId>
+            <artifactId>dynamia-tools-starter</artifactId>
+            <version>${dynamiatools.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+            <version>${springdoc.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <jvmArguments>-Dspring.application.admin.enabled=true</jvmArguments>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>pre-integration-test</id>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>post-integration-test</id>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Plugin to auto generate openapi.json -->
+            <plugin>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-maven-plugin</artifactId>
+                <version>${springdocplugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-api-docs</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <outputFileName>openapi.json</outputFileName>
+                    <outputDir>${project.basedir}</outputDir>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin to auto generate clients -->
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>7.12.0</version>
+
+                <executions>
+                    <execution>
+                        <id>generate-ts-client</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <generatorName>typescript-node</generatorName>
+                            <output>${project.basedir}/clients/typescript</output>
+                            <configOptions>
+                                <npmName>dynamiatools-api</npmName>
+                                <npmVersion>${dynamiatools.version}</npmVersion>
+                                <licenseName>Apache2</licenseName>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>generate-dart-client</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <generatorName>dart</generatorName>
+                            <output>${project.basedir}/clients/dart</output>
+                            <configOptions>
+                                <pubLibrary>dynamia.tools.api</pubLibrary>
+                                <pubName>dynamiatools_api</pubName>
+                                <pubDescription>DynamiaTools API autogenerated dart client</pubDescription>
+                                <pubVersion>${dynamiatools.version}</pubVersion>
+                                <pubHomepage>https://www.dynamia.tools</pubHomepage>
+                                <pubRepository>https://github.com/dynamiatools/api-clients/clients/dark
+                                </pubRepository>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>generate-spring-client</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <generatorName>java</generatorName>
+                            <output>${project.basedir}/clients/java</output>
+                            <configOptions>
+                                <useJakartaEe>true</useJakartaEe>
+                                <groupId>tools.dynamia</groupId>
+                                <artifactId>dynamia-tools-client</artifactId>
+                                <artifactDescription>DynamiaTools API autogenerated Java spring client
+                                </artifactDescription>
+                                <artifactVersion>${dynamiatools.version}</artifactVersion>
+                                <artifactUrl>https://www.dynamia.tools</artifactUrl>
+                                <invokerPackage>tools.dynamia.clients</invokerPackage>
+                                <apiPackage>tools.dynamia.clients.api</apiPackage>
+                                <modelPackage>tools.dynamia.clients.model</modelPackage>
+                                <scmUrl>https://github.com/dynamiatools/api-clients/clients/java</scmUrl>
+                                <scmConnetion></scmConnetion>
+                                <licenseName>APACHE LICENSE, VERSION 2.0</licenseName>
+                                <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+                                <library>restclient</library>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>generate-android-client</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <generatorName>android</generatorName>
+                            <output>${project.basedir}/clients/android</output>
+                            <configOptions>
+                                <useJakartaEe>true</useJakartaEe>
+                                <groupId>tools.dynamia</groupId>
+                                <artifactId>dynamia-tools-android-client</artifactId>
+                                <artifactDescription>DynamiaTools API autogenerated Android client
+                                </artifactDescription>
+                                <artifactVersion>${dynamiatools.version}</artifactVersion>
+                                <artifactUrl>https://www.dynamia.tools</artifactUrl>
+                                <invokerPackage>tools.dynamia.clients</invokerPackage>
+                                <apiPackage>tools.dynamia.clients.api</apiPackage>
+                                <modelPackage>tools.dynamia.clients.model</modelPackage>
+                                <scmUrl>https://github.com/dynamiatools/api-clients/clients/android</scmUrl>
+                                <scmConnetion></scmConnetion>
+                                <licenseName>APACHE LICENSE, VERSION 2.0</licenseName>
+                                <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+                                <parcelableModel>true</parcelableModel>
+                                <useGzipFeature>true</useGzipFeature>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
