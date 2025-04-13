@@ -21,9 +21,9 @@
 |**optional** | **Boolean** |  |  [optional] |
 |**path** | **String** |  |  [optional] |
 |**variable** | **String** |  |  [optional] |
+|**entity** | **Boolean** |  |  [optional] |
 |**readOnly** | **Boolean** |  |  [optional] |
 |**collection** | **Boolean** |  |  [optional] |
-|**entity** | **Boolean** |  |  [optional] |
 |**localizedDescription** | **String** |  |  [optional] |
 |**localizedLabel** | **String** |  |  [optional] |
 |**property** | **Boolean** |  |  [optional] |

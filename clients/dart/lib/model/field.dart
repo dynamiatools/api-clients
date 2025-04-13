@@ -27,9 +27,9 @@ class Field {
     this.optional,
     this.path,
     this.variable,
+    this.entity,
     this.readOnly,
     this.collection,
-    this.entity,
     this.localizedDescription,
     this.localizedLabel,
     this.property,
@@ -149,6 +149,14 @@ class Field {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
+  bool? entity;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   bool? readOnly;
 
   ///
@@ -158,14 +166,6 @@ class Field {
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
   bool? collection;
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  bool? entity;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -223,9 +223,9 @@ class Field {
     other.optional == optional &&
     other.path == path &&
     other.variable == variable &&
+    other.entity == entity &&
     other.readOnly == readOnly &&
     other.collection == collection &&
-    other.entity == entity &&
     other.localizedDescription == localizedDescription &&
     other.localizedLabel == localizedLabel &&
     other.property == property &&
@@ -249,9 +249,9 @@ class Field {
     (optional == null ? 0 : optional!.hashCode) +
     (path == null ? 0 : path!.hashCode) +
     (variable == null ? 0 : variable!.hashCode) +
+    (entity == null ? 0 : entity!.hashCode) +
     (readOnly == null ? 0 : readOnly!.hashCode) +
     (collection == null ? 0 : collection!.hashCode) +
-    (entity == null ? 0 : entity!.hashCode) +
     (localizedDescription == null ? 0 : localizedDescription!.hashCode) +
     (localizedLabel == null ? 0 : localizedLabel!.hashCode) +
     (property == null ? 0 : property!.hashCode) +
@@ -259,7 +259,7 @@ class Field {
     (writeOnly == null ? 0 : writeOnly!.hashCode);
 
   @override
-  String toString() => 'Field[name=$name, label=$label, description=$description, component=$component, params=$params, visible=$visible, index=$index, required_=$required_, action=$action, icon=$icon, showIconOnly=$showIconOnly, optional=$optional, path=$path, variable=$variable, readOnly=$readOnly, collection=$collection, entity=$entity, localizedDescription=$localizedDescription, localizedLabel=$localizedLabel, property=$property, readWrite=$readWrite, writeOnly=$writeOnly]';
+  String toString() => 'Field[name=$name, label=$label, description=$description, component=$component, params=$params, visible=$visible, index=$index, required_=$required_, action=$action, icon=$icon, showIconOnly=$showIconOnly, optional=$optional, path=$path, variable=$variable, entity=$entity, readOnly=$readOnly, collection=$collection, localizedDescription=$localizedDescription, localizedLabel=$localizedLabel, property=$property, readWrite=$readWrite, writeOnly=$writeOnly]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -329,6 +329,11 @@ class Field {
     } else {
       json[r'variable'] = null;
     }
+    if (this.entity != null) {
+      json[r'entity'] = this.entity;
+    } else {
+      json[r'entity'] = null;
+    }
     if (this.readOnly != null) {
       json[r'readOnly'] = this.readOnly;
     } else {
@@ -338,11 +343,6 @@ class Field {
       json[r'collection'] = this.collection;
     } else {
       json[r'collection'] = null;
-    }
-    if (this.entity != null) {
-      json[r'entity'] = this.entity;
-    } else {
-      json[r'entity'] = null;
     }
     if (this.localizedDescription != null) {
       json[r'localizedDescription'] = this.localizedDescription;
@@ -405,9 +405,9 @@ class Field {
         optional: mapValueOfType<bool>(json, r'optional'),
         path: mapValueOfType<String>(json, r'path'),
         variable: mapValueOfType<String>(json, r'variable'),
+        entity: mapValueOfType<bool>(json, r'entity'),
         readOnly: mapValueOfType<bool>(json, r'readOnly'),
         collection: mapValueOfType<bool>(json, r'collection'),
-        entity: mapValueOfType<bool>(json, r'entity'),
         localizedDescription: mapValueOfType<String>(json, r'localizedDescription'),
         localizedLabel: mapValueOfType<String>(json, r'localizedLabel'),
         property: mapValueOfType<bool>(json, r'property'),

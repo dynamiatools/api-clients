@@ -44,16 +44,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   Field.JSON_PROPERTY_OPTIONAL,
   Field.JSON_PROPERTY_PATH,
   Field.JSON_PROPERTY_VARIABLE,
+  Field.JSON_PROPERTY_ENTITY,
   Field.JSON_PROPERTY_READ_ONLY,
   Field.JSON_PROPERTY_COLLECTION,
-  Field.JSON_PROPERTY_ENTITY,
   Field.JSON_PROPERTY_LOCALIZED_DESCRIPTION,
   Field.JSON_PROPERTY_LOCALIZED_LABEL,
   Field.JSON_PROPERTY_PROPERTY,
   Field.JSON_PROPERTY_READ_WRITE,
   Field.JSON_PROPERTY_WRITE_ONLY
 })
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-13T13:21:28.528898514-05:00[America/Bogota]", comments = "Generator version: 7.12.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-13T13:27:54.300070628-05:00[America/Bogota]", comments = "Generator version: 7.12.0")
 public class Field {
   public static final String JSON_PROPERTY_NAME = "name";
   @jakarta.annotation.Nullable
@@ -111,6 +111,10 @@ public class Field {
   @jakarta.annotation.Nullable
   private String variable;
 
+  public static final String JSON_PROPERTY_ENTITY = "entity";
+  @jakarta.annotation.Nullable
+  private Boolean entity;
+
   public static final String JSON_PROPERTY_READ_ONLY = "readOnly";
   @jakarta.annotation.Nullable
   private Boolean readOnly;
@@ -118,10 +122,6 @@ public class Field {
   public static final String JSON_PROPERTY_COLLECTION = "collection";
   @jakarta.annotation.Nullable
   private Boolean collection;
-
-  public static final String JSON_PROPERTY_ENTITY = "entity";
-  @jakarta.annotation.Nullable
-  private Boolean entity;
 
   public static final String JSON_PROPERTY_LOCALIZED_DESCRIPTION = "localizedDescription";
   @jakarta.annotation.Nullable
@@ -504,6 +504,31 @@ public class Field {
     this.variable = variable;
   }
 
+  public Field entity(@jakarta.annotation.Nullable Boolean entity) {
+    
+    this.entity = entity;
+    return this;
+  }
+
+  /**
+   * Get entity
+   * @return entity
+   */
+  @jakarta.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ENTITY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getEntity() {
+    return entity;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ENTITY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEntity(@jakarta.annotation.Nullable Boolean entity) {
+    this.entity = entity;
+  }
+
   public Field readOnly(@jakarta.annotation.Nullable Boolean readOnly) {
     
     this.readOnly = readOnly;
@@ -552,31 +577,6 @@ public class Field {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCollection(@jakarta.annotation.Nullable Boolean collection) {
     this.collection = collection;
-  }
-
-  public Field entity(@jakarta.annotation.Nullable Boolean entity) {
-    
-    this.entity = entity;
-    return this;
-  }
-
-  /**
-   * Get entity
-   * @return entity
-   */
-  @jakarta.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ENTITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getEntity() {
-    return entity;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENTITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEntity(@jakarta.annotation.Nullable Boolean entity) {
-    this.entity = entity;
   }
 
   public Field localizedDescription(@jakarta.annotation.Nullable String localizedDescription) {
@@ -727,9 +727,9 @@ public class Field {
         Objects.equals(this.optional, field.optional) &&
         Objects.equals(this.path, field.path) &&
         Objects.equals(this.variable, field.variable) &&
+        Objects.equals(this.entity, field.entity) &&
         Objects.equals(this.readOnly, field.readOnly) &&
         Objects.equals(this.collection, field.collection) &&
-        Objects.equals(this.entity, field.entity) &&
         Objects.equals(this.localizedDescription, field.localizedDescription) &&
         Objects.equals(this.localizedLabel, field.localizedLabel) &&
         Objects.equals(this.property, field.property) &&
@@ -739,7 +739,7 @@ public class Field {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, label, description, component, params, visible, index, required, action, icon, showIconOnly, optional, path, variable, readOnly, collection, entity, localizedDescription, localizedLabel, property, readWrite, writeOnly);
+    return Objects.hash(name, label, description, component, params, visible, index, required, action, icon, showIconOnly, optional, path, variable, entity, readOnly, collection, localizedDescription, localizedLabel, property, readWrite, writeOnly);
   }
 
   @Override
@@ -760,9 +760,9 @@ public class Field {
     sb.append("    optional: ").append(toIndentedString(optional)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    variable: ").append(toIndentedString(variable)).append("\n");
+    sb.append("    entity: ").append(toIndentedString(entity)).append("\n");
     sb.append("    readOnly: ").append(toIndentedString(readOnly)).append("\n");
     sb.append("    collection: ").append(toIndentedString(collection)).append("\n");
-    sb.append("    entity: ").append(toIndentedString(entity)).append("\n");
     sb.append("    localizedDescription: ").append(toIndentedString(localizedDescription)).append("\n");
     sb.append("    localizedLabel: ").append(toIndentedString(localizedLabel)).append("\n");
     sb.append("    property: ").append(toIndentedString(property)).append("\n");

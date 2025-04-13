@@ -40,7 +40,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ActionMetadata.JSON_PROPERTY_APPLICABLE_CLASSES,
   ActionMetadata.JSON_PROPERTY_APPLICABLE_STATES
 })
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-13T13:21:28.528898514-05:00[America/Bogota]", comments = "Generator version: 7.12.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-13T13:27:54.300070628-05:00[America/Bogota]", comments = "Generator version: 7.12.0")
 public class ActionMetadata {
   public static final String JSON_PROPERTY_ID = "id";
   @jakarta.annotation.Nullable

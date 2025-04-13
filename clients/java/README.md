@@ -4,7 +4,7 @@ DynamiaTools API
 
 - API version: 5.3.6
 
-- Build date: 2025-04-13T13:21:28.528898514-05:00[America/Bogota]
+- Build date: 2025-04-13T13:27:54.300070628-05:00[America/Bogota]
 
 - Generator version: 7.12.0
 

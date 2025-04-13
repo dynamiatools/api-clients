@@ -48,12 +48,12 @@ public class Field {
   private String path = null;
   @SerializedName("variable")
   private String variable = null;
+  @SerializedName("entity")
+  private Boolean entity = null;
   @SerializedName("readOnly")
   private Boolean readOnly = null;
   @SerializedName("collection")
   private Boolean collection = null;
-  @SerializedName("entity")
-  private Boolean entity = null;
   @SerializedName("localizedDescription")
   private String localizedDescription = null;
   @SerializedName("localizedLabel")
@@ -208,6 +208,16 @@ public class Field {
   /**
    **/
   @ApiModelProperty(value = "")
+  public Boolean getEntity() {
+    return entity;
+  }
+  public void setEntity(Boolean entity) {
+    this.entity = entity;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
   public Boolean getReadOnly() {
     return readOnly;
   }
@@ -223,16 +233,6 @@ public class Field {
   }
   public void setCollection(Boolean collection) {
     this.collection = collection;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Boolean getEntity() {
-    return entity;
-  }
-  public void setEntity(Boolean entity) {
-    this.entity = entity;
   }
 
   /**
@@ -309,9 +309,9 @@ public class Field {
         (this.optional == null ? field.optional == null : this.optional.equals(field.optional)) &&
         (this.path == null ? field.path == null : this.path.equals(field.path)) &&
         (this.variable == null ? field.variable == null : this.variable.equals(field.variable)) &&
+        (this.entity == null ? field.entity == null : this.entity.equals(field.entity)) &&
         (this.readOnly == null ? field.readOnly == null : this.readOnly.equals(field.readOnly)) &&
         (this.collection == null ? field.collection == null : this.collection.equals(field.collection)) &&
-        (this.entity == null ? field.entity == null : this.entity.equals(field.entity)) &&
         (this.localizedDescription == null ? field.localizedDescription == null : this.localizedDescription.equals(field.localizedDescription)) &&
         (this.localizedLabel == null ? field.localizedLabel == null : this.localizedLabel.equals(field.localizedLabel)) &&
         (this.property == null ? field.property == null : this.property.equals(field.property)) &&
@@ -336,9 +336,9 @@ public class Field {
     result = 31 * result + (this.optional == null ? 0: this.optional.hashCode());
     result = 31 * result + (this.path == null ? 0: this.path.hashCode());
     result = 31 * result + (this.variable == null ? 0: this.variable.hashCode());
+    result = 31 * result + (this.entity == null ? 0: this.entity.hashCode());
     result = 31 * result + (this.readOnly == null ? 0: this.readOnly.hashCode());
     result = 31 * result + (this.collection == null ? 0: this.collection.hashCode());
-    result = 31 * result + (this.entity == null ? 0: this.entity.hashCode());
     result = 31 * result + (this.localizedDescription == null ? 0: this.localizedDescription.hashCode());
     result = 31 * result + (this.localizedLabel == null ? 0: this.localizedLabel.hashCode());
     result = 31 * result + (this.property == null ? 0: this.property.hashCode());
@@ -366,9 +366,9 @@ public class Field {
     sb.append("  optional: ").append(optional).append("\n");
     sb.append("  path: ").append(path).append("\n");
     sb.append("  variable: ").append(variable).append("\n");
+    sb.append("  entity: ").append(entity).append("\n");
     sb.append("  readOnly: ").append(readOnly).append("\n");
     sb.append("  collection: ").append(collection).append("\n");
-    sb.append("  entity: ").append(entity).append("\n");
     sb.append("  localizedDescription: ").append(localizedDescription).append("\n");
     sb.append("  localizedLabel: ").append(localizedLabel).append("\n");
     sb.append("  property: ").append(property).append("\n");

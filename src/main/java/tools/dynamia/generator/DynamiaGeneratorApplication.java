@@ -20,10 +20,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         ),
         externalDocs = @ExternalDocumentation(description = "DynamiaTools Documentation", url = "https://www.dynamia.tools")
 )
-public class DynamiaMetadataApiTestApplication {
+public class DynamiaGeneratorApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DynamiaMetadataApiTestApplication.class, args);
+        SpringApplication.run(DynamiaGeneratorApplication.class, args);
     }
 
 

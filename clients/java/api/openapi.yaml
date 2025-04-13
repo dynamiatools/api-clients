@@ -1007,11 +1007,11 @@ components:
           type: string
         variable:
           type: string
+        entity:
+          type: boolean
         readOnly:
           type: boolean
         collection:
-          type: boolean
-        entity:
           type: boolean
         localizedDescription:
           type: string

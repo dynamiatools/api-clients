@@ -28,9 +28,9 @@ export class Field {
     'optional'?: boolean;
     'path'?: string;
     'variable'?: string;
+    'entity'?: boolean;
     'readOnly'?: boolean;
     'collection'?: boolean;
-    'entity'?: boolean;
     'localizedDescription'?: string;
     'localizedLabel'?: string;
     'property'?: boolean;
@@ -111,6 +111,11 @@ export class Field {
             "type": "string"
         },
         {
+            "name": "entity",
+            "baseName": "entity",
+            "type": "boolean"
+        },
+        {
             "name": "readOnly",
             "baseName": "readOnly",
             "type": "boolean"
@@ -118,11 +123,6 @@ export class Field {
         {
             "name": "collection",
             "baseName": "collection",
-            "type": "boolean"
-        },
-        {
-            "name": "entity",
-            "baseName": "entity",
             "type": "boolean"
         },
         {
