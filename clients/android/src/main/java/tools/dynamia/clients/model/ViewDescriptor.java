@@ -30,6 +30,8 @@ public class ViewDescriptor {
   private List<ActionRef> actions = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("params")
+  private Map<String, Object> params = null;
   @SerializedName("layout")
   private ViewLayout layout = null;
   @SerializedName("extends")
@@ -44,8 +46,6 @@ public class ViewDescriptor {
   private String messages = null;
   @SerializedName("fieldGroups")
   private List<FieldGroup> fieldGroups = null;
-  @SerializedName("params")
-  private Map<String, Object> params = null;
 
   /**
    **/
@@ -75,6 +75,16 @@ public class ViewDescriptor {
   }
   public void setId(String id) {
     this.id = id;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public Map<String, Object> getParams() {
+    return params;
+  }
+  public void setParams(Map<String, Object> params) {
+    this.params = params;
   }
 
   /**
@@ -147,16 +157,6 @@ public class ViewDescriptor {
     this.fieldGroups = fieldGroups;
   }
 
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Map<String, Object> getParams() {
-    return params;
-  }
-  public void setParams(Map<String, Object> params) {
-    this.params = params;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -170,14 +170,14 @@ public class ViewDescriptor {
     return (this.fields == null ? viewDescriptor.fields == null : this.fields.equals(viewDescriptor.fields)) &&
         (this.actions == null ? viewDescriptor.actions == null : this.actions.equals(viewDescriptor.actions)) &&
         (this.id == null ? viewDescriptor.id == null : this.id.equals(viewDescriptor.id)) &&
+        (this.params == null ? viewDescriptor.params == null : this.params.equals(viewDescriptor.params)) &&
         (this.layout == null ? viewDescriptor.layout == null : this.layout.equals(viewDescriptor.layout)) &&
         (this._extends == null ? viewDescriptor._extends == null : this._extends.equals(viewDescriptor._extends)) &&
         (this.autofields == null ? viewDescriptor.autofields == null : this.autofields.equals(viewDescriptor.autofields)) &&
         (this.device == null ? viewDescriptor.device == null : this.device.equals(viewDescriptor.device)) &&
         (this.viewTypeName == null ? viewDescriptor.viewTypeName == null : this.viewTypeName.equals(viewDescriptor.viewTypeName)) &&
         (this.messages == null ? viewDescriptor.messages == null : this.messages.equals(viewDescriptor.messages)) &&
-        (this.fieldGroups == null ? viewDescriptor.fieldGroups == null : this.fieldGroups.equals(viewDescriptor.fieldGroups)) &&
-        (this.params == null ? viewDescriptor.params == null : this.params.equals(viewDescriptor.params));
+        (this.fieldGroups == null ? viewDescriptor.fieldGroups == null : this.fieldGroups.equals(viewDescriptor.fieldGroups));
   }
 
   @Override
@@ -186,6 +186,7 @@ public class ViewDescriptor {
     result = 31 * result + (this.fields == null ? 0: this.fields.hashCode());
     result = 31 * result + (this.actions == null ? 0: this.actions.hashCode());
     result = 31 * result + (this.id == null ? 0: this.id.hashCode());
+    result = 31 * result + (this.params == null ? 0: this.params.hashCode());
     result = 31 * result + (this.layout == null ? 0: this.layout.hashCode());
     result = 31 * result + (this._extends == null ? 0: this._extends.hashCode());
     result = 31 * result + (this.autofields == null ? 0: this.autofields.hashCode());
@@ -193,7 +194,6 @@ public class ViewDescriptor {
     result = 31 * result + (this.viewTypeName == null ? 0: this.viewTypeName.hashCode());
     result = 31 * result + (this.messages == null ? 0: this.messages.hashCode());
     result = 31 * result + (this.fieldGroups == null ? 0: this.fieldGroups.hashCode());
-    result = 31 * result + (this.params == null ? 0: this.params.hashCode());
     return result;
   }
 
@@ -205,6 +205,7 @@ public class ViewDescriptor {
     sb.append("  fields: ").append(fields).append("\n");
     sb.append("  actions: ").append(actions).append("\n");
     sb.append("  id: ").append(id).append("\n");
+    sb.append("  params: ").append(params).append("\n");
     sb.append("  layout: ").append(layout).append("\n");
     sb.append("  _extends: ").append(_extends).append("\n");
     sb.append("  autofields: ").append(autofields).append("\n");
@@ -212,7 +213,6 @@ public class ViewDescriptor {
     sb.append("  viewTypeName: ").append(viewTypeName).append("\n");
     sb.append("  messages: ").append(messages).append("\n");
     sb.append("  fieldGroups: ").append(fieldGroups).append("\n");
-    sb.append("  params: ").append(params).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

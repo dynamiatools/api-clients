@@ -16,6 +16,7 @@ class ViewDescriptor {
     this.fields = const [],
     this.actions = const [],
     this.id,
+    this.params = const {},
     this.layout,
     this.extends_,
     this.autofields,
@@ -23,7 +24,6 @@ class ViewDescriptor {
     this.viewTypeName,
     this.messages,
     this.fieldGroups = const [],
-    this.params = const {},
   });
 
   List<Field> fields;
@@ -37,6 +37,8 @@ class ViewDescriptor {
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
   String? id;
+
+  Map<String, Object> params;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -88,21 +90,19 @@ class ViewDescriptor {
 
   List<FieldGroup> fieldGroups;
 
-  Map<String, Object> params;
-
   @override
   bool operator ==(Object other) => identical(this, other) || other is ViewDescriptor &&
     _deepEquality.equals(other.fields, fields) &&
     _deepEquality.equals(other.actions, actions) &&
     other.id == id &&
+    _deepEquality.equals(other.params, params) &&
     other.layout == layout &&
     other.extends_ == extends_ &&
     other.autofields == autofields &&
     other.device == device &&
     other.viewTypeName == viewTypeName &&
     other.messages == messages &&
-    _deepEquality.equals(other.fieldGroups, fieldGroups) &&
-    _deepEquality.equals(other.params, params);
+    _deepEquality.equals(other.fieldGroups, fieldGroups);
 
   @override
   int get hashCode =>
@@ -110,17 +110,17 @@ class ViewDescriptor {
     (fields.hashCode) +
     (actions.hashCode) +
     (id == null ? 0 : id!.hashCode) +
+    (params.hashCode) +
     (layout == null ? 0 : layout!.hashCode) +
     (extends_ == null ? 0 : extends_!.hashCode) +
     (autofields == null ? 0 : autofields!.hashCode) +
     (device == null ? 0 : device!.hashCode) +
     (viewTypeName == null ? 0 : viewTypeName!.hashCode) +
     (messages == null ? 0 : messages!.hashCode) +
-    (fieldGroups.hashCode) +
-    (params.hashCode);
+    (fieldGroups.hashCode);
 
   @override
-  String toString() => 'ViewDescriptor[fields=$fields, actions=$actions, id=$id, layout=$layout, extends_=$extends_, autofields=$autofields, device=$device, viewTypeName=$viewTypeName, messages=$messages, fieldGroups=$fieldGroups, params=$params]';
+  String toString() => 'ViewDescriptor[fields=$fields, actions=$actions, id=$id, params=$params, layout=$layout, extends_=$extends_, autofields=$autofields, device=$device, viewTypeName=$viewTypeName, messages=$messages, fieldGroups=$fieldGroups]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -131,6 +131,7 @@ class ViewDescriptor {
     } else {
       json[r'id'] = null;
     }
+      json[r'params'] = this.params;
     if (this.layout != null) {
       json[r'layout'] = this.layout;
     } else {
@@ -162,7 +163,6 @@ class ViewDescriptor {
       json[r'messages'] = null;
     }
       json[r'fieldGroups'] = this.fieldGroups;
-      json[r'params'] = this.params;
     return json;
   }
 
@@ -188,6 +188,7 @@ class ViewDescriptor {
         fields: Field.listFromJson(json[r'fields']),
         actions: ActionRef.listFromJson(json[r'actions']),
         id: mapValueOfType<String>(json, r'id'),
+        params: mapCastOfType<String, Object>(json, r'params') ?? const {},
         layout: ViewLayout.fromJson(json[r'layout']),
         extends_: mapValueOfType<String>(json, r'extends'),
         autofields: mapValueOfType<bool>(json, r'autofields'),
@@ -195,7 +196,6 @@ class ViewDescriptor {
         viewTypeName: mapValueOfType<String>(json, r'viewTypeName'),
         messages: mapValueOfType<String>(json, r'messages'),
         fieldGroups: FieldGroup.listFromJson(json[r'fieldGroups']),
-        params: mapCastOfType<String, Object>(json, r'params') ?? const {},
       );
     }
     return null;

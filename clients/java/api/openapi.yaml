@@ -1189,6 +1189,9 @@ components:
           type: array
         id:
           type: string
+        params:
+          additionalProperties:
+            type: object
         layout:
           $ref: '#/components/schemas/ViewLayout'
         extends:
@@ -1205,9 +1208,6 @@ components:
           items:
             $ref: '#/components/schemas/FieldGroup'
           type: array
-        params:
-          additionalProperties:
-            type: object
     ViewLayout:
       example:
         params:

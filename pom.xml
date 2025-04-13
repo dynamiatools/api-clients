@@ -155,6 +155,7 @@
                                 <licenseName>APACHE LICENSE, VERSION 2.0</licenseName>
                                 <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
                                 <library>restclient</library>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
                             </configOptions>
                         </configuration>
                     </execution>

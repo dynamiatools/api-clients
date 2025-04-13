@@ -39,16 +39,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ViewDescriptor.JSON_PROPERTY_FIELDS,
   ViewDescriptor.JSON_PROPERTY_ACTIONS,
   ViewDescriptor.JSON_PROPERTY_ID,
+  ViewDescriptor.JSON_PROPERTY_PARAMS,
   ViewDescriptor.JSON_PROPERTY_LAYOUT,
   ViewDescriptor.JSON_PROPERTY_EXTENDS,
   ViewDescriptor.JSON_PROPERTY_AUTOFIELDS,
   ViewDescriptor.JSON_PROPERTY_DEVICE,
   ViewDescriptor.JSON_PROPERTY_VIEW_TYPE_NAME,
   ViewDescriptor.JSON_PROPERTY_MESSAGES,
-  ViewDescriptor.JSON_PROPERTY_FIELD_GROUPS,
-  ViewDescriptor.JSON_PROPERTY_PARAMS
+  ViewDescriptor.JSON_PROPERTY_FIELD_GROUPS
 })
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-13T13:27:54.300070628-05:00[America/Bogota]", comments = "Generator version: 7.12.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.12.0")
 public class ViewDescriptor {
   public static final String JSON_PROPERTY_FIELDS = "fields";
   @jakarta.annotation.Nullable
@@ -61,6 +61,10 @@ public class ViewDescriptor {
   public static final String JSON_PROPERTY_ID = "id";
   @jakarta.annotation.Nullable
   private String id;
+
+  public static final String JSON_PROPERTY_PARAMS = "params";
+  @jakarta.annotation.Nullable
+  private Map<String, Object> params = new HashMap<>();
 
   public static final String JSON_PROPERTY_LAYOUT = "layout";
   @jakarta.annotation.Nullable
@@ -89,10 +93,6 @@ public class ViewDescriptor {
   public static final String JSON_PROPERTY_FIELD_GROUPS = "fieldGroups";
   @jakarta.annotation.Nullable
   private List<FieldGroup> fieldGroups = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_PARAMS = "params";
-  @jakarta.annotation.Nullable
-  private Map<String, Object> params = new HashMap<>();
 
   public ViewDescriptor() {
   }
@@ -186,6 +186,39 @@ public class ViewDescriptor {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(@jakarta.annotation.Nullable String id) {
     this.id = id;
+  }
+
+  public ViewDescriptor params(@jakarta.annotation.Nullable Map<String, Object> params) {
+    
+    this.params = params;
+    return this;
+  }
+
+  public ViewDescriptor putParamsItem(String key, Object paramsItem) {
+    if (this.params == null) {
+      this.params = new HashMap<>();
+    }
+    this.params.put(key, paramsItem);
+    return this;
+  }
+
+  /**
+   * Get params
+   * @return params
+   */
+  @jakarta.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_PARAMS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Map<String, Object> getParams() {
+    return params;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PARAMS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setParams(@jakarta.annotation.Nullable Map<String, Object> params) {
+    this.params = params;
   }
 
   public ViewDescriptor layout(@jakarta.annotation.Nullable ViewLayout layout) {
@@ -371,39 +404,6 @@ public class ViewDescriptor {
     this.fieldGroups = fieldGroups;
   }
 
-  public ViewDescriptor params(@jakarta.annotation.Nullable Map<String, Object> params) {
-    
-    this.params = params;
-    return this;
-  }
-
-  public ViewDescriptor putParamsItem(String key, Object paramsItem) {
-    if (this.params == null) {
-      this.params = new HashMap<>();
-    }
-    this.params.put(key, paramsItem);
-    return this;
-  }
-
-  /**
-   * Get params
-   * @return params
-   */
-  @jakarta.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PARAMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Map<String, Object> getParams() {
-    return params;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PARAMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParams(@jakarta.annotation.Nullable Map<String, Object> params) {
-    this.params = params;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -416,19 +416,19 @@ public class ViewDescriptor {
     return Objects.equals(this.fields, viewDescriptor.fields) &&
         Objects.equals(this.actions, viewDescriptor.actions) &&
         Objects.equals(this.id, viewDescriptor.id) &&
+        Objects.equals(this.params, viewDescriptor.params) &&
         Objects.equals(this.layout, viewDescriptor.layout) &&
         Objects.equals(this._extends, viewDescriptor._extends) &&
         Objects.equals(this.autofields, viewDescriptor.autofields) &&
         Objects.equals(this.device, viewDescriptor.device) &&
         Objects.equals(this.viewTypeName, viewDescriptor.viewTypeName) &&
         Objects.equals(this.messages, viewDescriptor.messages) &&
-        Objects.equals(this.fieldGroups, viewDescriptor.fieldGroups) &&
-        Objects.equals(this.params, viewDescriptor.params);
+        Objects.equals(this.fieldGroups, viewDescriptor.fieldGroups);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fields, actions, id, layout, _extends, autofields, device, viewTypeName, messages, fieldGroups, params);
+    return Objects.hash(fields, actions, id, params, layout, _extends, autofields, device, viewTypeName, messages, fieldGroups);
   }
 
   @Override
@@ -438,6 +438,7 @@ public class ViewDescriptor {
     sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
     sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    params: ").append(toIndentedString(params)).append("\n");
     sb.append("    layout: ").append(toIndentedString(layout)).append("\n");
     sb.append("    _extends: ").append(toIndentedString(_extends)).append("\n");
     sb.append("    autofields: ").append(toIndentedString(autofields)).append("\n");
@@ -445,7 +446,6 @@ public class ViewDescriptor {
     sb.append("    viewTypeName: ").append(toIndentedString(viewTypeName)).append("\n");
     sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
     sb.append("    fieldGroups: ").append(toIndentedString(fieldGroups)).append("\n");
-    sb.append("    params: ").append(toIndentedString(params)).append("\n");
     sb.append("}");
     return sb.toString();
   }

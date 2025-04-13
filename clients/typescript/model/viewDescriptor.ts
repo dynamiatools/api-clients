@@ -20,6 +20,7 @@ export class ViewDescriptor {
     'fields'?: Array<Field>;
     'actions'?: Array<ActionRef>;
     'id'?: string;
+    'params'?: { [key: string]: object; };
     'layout'?: ViewLayout;
     '_extends'?: string;
     'autofields'?: boolean;
@@ -27,7 +28,6 @@ export class ViewDescriptor {
     'viewTypeName'?: string;
     'messages'?: string;
     'fieldGroups'?: Array<FieldGroup>;
-    'params'?: { [key: string]: object; };
 
     static discriminator: string | undefined = undefined;
 
@@ -46,6 +46,11 @@ export class ViewDescriptor {
             "name": "id",
             "baseName": "id",
             "type": "string"
+        },
+        {
+            "name": "params",
+            "baseName": "params",
+            "type": "{ [key: string]: object; }"
         },
         {
             "name": "layout",
@@ -81,11 +86,6 @@ export class ViewDescriptor {
             "name": "fieldGroups",
             "baseName": "fieldGroups",
             "type": "Array<FieldGroup>"
-        },
-        {
-            "name": "params",
-            "baseName": "params",
-            "type": "{ [key: string]: object; }"
         }    ];
 
     static getAttributeTypeMap() {
